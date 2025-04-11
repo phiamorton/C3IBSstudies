@@ -1,0 +1,47 @@
+&run_setup    
+        lattice="c3_single_cryo_ibs.lte"
+	use_beamline="MYBL2"
+	default_order = 3
+p_central_mev=4600
+centroid=%s.cen,
+sigma=%s.sig
+output=%s.out
+print_statistics=1
+final=%s.fin
+&end
+
+&run_control
+&end
+
+&twiss_output
+        matched=0
+beta_x=8.796283
+alpha_x=0
+eta_x=0
+etap_x=0
+beta_y=3.987276
+alpha_y=0
+eta_y=0
+etap_y=0
+&end
+
+&bunched_beam
+        n_particles_per_bunch = 100000,
+        one_random_bunch=0,
+        emit_nx = 7.75e-7,
+        emit_ny = 1e-8,
+        sigma_dp = 0.015,
+        sigma_s = 1.0e-04,
+        enforce_rms_values[0] = 7,7,7,
+        distribution_type[0] = 3*"gaussian",
+        distribution_cutoff[0] = 3*3,
+        symmetrize = 1,
+        halton_sequence[0]=3*1,
+        optimized_halton=1,
+        randomize_order[0] = 2, 2, 2,
+        bunch = %s.bun,
+        use_twiss_command_values=1,
+&end
+
+&track
+&end
