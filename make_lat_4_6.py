@@ -89,7 +89,7 @@ lrmodex = eleganttoolkit.Lattice('HOMX', 'FTRFMODE',filename='\"' + 'hom.sdds' +
                                  RAMP_PASSES=0,LONG_RANGE_ONLY=1,BUNCHED_BEAM_MODE=1,XFACTOR=0,YFACTOR=1)
 
 bpm1 = eleganttoolkit.Lattice('m1','moni')
-IBS_element=eleganttoolkit.Lattice('IBSNAME','IBSCATTER', FILENAME='IBSoutput_4_6')
+
 # the first quad with half the length of other quads
 quad0_halfsize = eleganttoolkit.Quad('CY000QFHALF0',l=0.5*quad_length,k1=quad_strength,dy=0,dx=0,vsteering=1,hsteering=1)
 mybl = eleganttoolkit.Beamline('mybl')
@@ -102,6 +102,7 @@ if malign_multi:
 latfile = os.path.join(myoptions.lat_name)
 
 rf_list = []
+ibs_list=[]
 quad_list = []
 emonitor_list = []
 bpm_list = []
@@ -154,7 +155,17 @@ for idx in range(num_cryo):
         emonitor_list.append(em_temp)
         emonitor_list_temp.append(em_temp)
 
+    
+    ibs_list_temp = []
+    
+    for idx_ibs in range(9):
+        #print(idx)
+        ibs_temp=eleganttoolkit.Lattice('IBSNAME_4_6'+str(idx).zfill(3)+'_'+str(idx_ibs),'IBSCATTER', FILENAME='IBSoutput_4_6'+str(idx).zfill(3)+'_'+str(idx_ibs))
+        ibs_list.append(ibs_temp)
+        ibs_list_temp.append(ibs_temp)
+    
     quad_list_temp = []
+    
     for idx_quad in range(4):
         energy_now += gain_per_raft
         gamma_now += gain_gamma
@@ -177,19 +188,19 @@ for idx in range(num_cryo):
         quad_list_temp.append(myq_temp)
 
 
-    cryomodules = [rfdrift_element, IBS_element,
-                   rf_list_temp[0], emonitor_list_temp[0], rf_list_temp[1], emonitor_list_temp[1],
+    cryomodules = [rfdrift_element,
+                   rf_list_temp[0], ibs_list_temp[0], emonitor_list_temp[0], rf_list_temp[1], ibs_list_temp[1], emonitor_list_temp[1],
                    bpm_list_temp[0], quad_list_temp[0],
-                   rfdrift_element, IBS_element,
-                   rf_list_temp[2], emonitor_list_temp[2], rf_list_temp[3], emonitor_list_temp[3],
+                   rfdrift_element, 
+                   rf_list_temp[2], ibs_list_temp[2], emonitor_list_temp[2], rf_list_temp[3], ibs_list_temp[3], emonitor_list_temp[3],
                    bpm_list_temp[1], quad_list_temp[1],
-                   rfdrift_element, IBS_element,
-                   rf_list_temp[4], emonitor_list_temp[4], rf_list_temp[5], emonitor_list_temp[5],
+                   rfdrift_element, 
+                   rf_list_temp[4], ibs_list_temp[4], emonitor_list_temp[4], rf_list_temp[5], ibs_list_temp[5], emonitor_list_temp[5],
                    bpm_list_temp[2], quad_list_temp[2],
-                   rfdrift_element, IBS_element,
-                   rf_list_temp[6], emonitor_list_temp[6], rf_list_temp[7], emonitor_list_temp[7],
-                   bpm_list_temp[3], quad_list_temp[3], IBS_element,
-                  wake_element, trwake_element]
+                   rfdrift_element, 
+                   rf_list_temp[6], ibs_list_temp[6], emonitor_list_temp[6], rf_list_temp[7], ibs_list_temp[7], emonitor_list_temp[7],
+                   bpm_list_temp[3], quad_list_temp[3], 
+                  wake_element, trwake_element, ibs_list_temp[8]]
 
 
     mybl.add_lattices(cryomodules)
@@ -200,10 +211,10 @@ for idx in range(num_cryo):
 zerobl = eleganttoolkit.Beamline('zero')
 zerobl.add_lattice(bpm1)
 
+
 with open(latfile, 'w') as myfile:
     print(charge_element, file=myfile)
     print(malign_element, file=myfile)
-    print(IBS_element, file=myfile)
     print(wake_element, file=myfile)
     print(trwake_element, file=myfile)
     print(rfdrift_element, file=myfile)
@@ -216,6 +227,8 @@ with open(latfile, 'w') as myfile:
     for each in quad_list:
         print(each, file=myfile)
     for each in rf_list:
+        print(each, file=myfile)
+    for each in ibs_list:
         print(each, file=myfile)
     for each in bpm_list:
         print(each, file=myfile)
