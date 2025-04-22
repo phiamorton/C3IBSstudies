@@ -5,7 +5,8 @@ import eleganttoolkit
 parser = argparse.ArgumentParser(description='just my output.')
 
 parser.add_argument('--lat_name', dest='lat_name', type=str, required=True)
-parser.add_argument('--energy_GeV', dest='energy_GeV', type=str, required=True)
+parser.add_argument('--energy_GeV', dest='energy_GeV', type=float, required=True)
+parser.add_argument('--filepathenergy', dest='filepathenergy', type=str, required=True)
 parser.add_argument('--malign_multi', dest='malign_multi', type=bool, default=False)
 parser.add_argument('--num_bunches', dest='num_bunches', type=int, default=100)
 parser.add_argument('--num_particles', dest='num_particles', type=int, default=1000)
@@ -30,6 +31,7 @@ dx_rf_error = 0
 # beam
 mycharge = 1e-9 #1nC
 energy_initial = myoptions.energy_GeV *10**9 #put in energy in GeV #4.6E9 # 4.6 GeV
+filepathenergy= myoptions.filepathenergy
 gamma_initial = energy_initial / 510998.95
 dy_malign = 0 #misalignment of the beam
 
@@ -162,7 +164,7 @@ for idx in range(num_cryo):
     
     for idx_ibs in range(9):
         #print(idx)
-        ibs_temp=eleganttoolkit.Lattice('IBSNAME_4_6'+str(idx).zfill(3)+'_'+str(idx_ibs),'IBSCATTER', FILENAME='IBSoutput_4_6'+str(idx).zfill(3)+'_'+str(idx_ibs))
+        ibs_temp=eleganttoolkit.Lattice('IBSNAME_4_6'+str(idx).zfill(3)+'_'+str(idx_ibs),'IBSCATTER', FILENAME='IBSoutput_'+str(filepathenergy)+str(idx).zfill(3)+'_'+str(idx_ibs))
         ibs_list.append(ibs_temp)
         ibs_list_temp.append(ibs_temp)
     
