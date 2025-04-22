@@ -163,8 +163,8 @@ for idx in range(num_cryo):
     ibs_list_temp = []
     
     for idx_ibs in range(9):
-        #print(idx)
-        ibs_temp=eleganttoolkit.Lattice('IBSNAME_'+filepathenergy+str(idx).zfill(3)+'_'+str(idx_ibs),'IBSCATTER', FILENAME='IBSoutput_'+filepathenergy+str(idx).zfill(3)+'_'+str(idx_ibs))
+        
+        ibs_temp=eleganttoolkit.Lattice('IBSNAME_'+str(filepathenergy)+'_'+str(idx).zfill(3)+'_'+str(idx_ibs),'IBSCATTER', FILENAME='IBSoutput_'+filepathenergy+'_'+str(idx).zfill(3)+'_'+str(idx_ibs))
         ibs_list.append(ibs_temp)
         ibs_list_temp.append(ibs_temp)
     
