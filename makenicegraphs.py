@@ -3,31 +3,38 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-file_path1 = 'single_bunch_ibs_4_6readables'
-file_path2 = 'single_bunch_ibs_4_6readableeny'
-file_path3 = 'single_bunch_noibs_4_6readables'
-file_path4 = 'single_bunch_noibs_4_6readableeny'
+file_pathibsys = 'single_bunch_ibs_4_6readables'
+file_pathibsyeny = 'single_bunch_ibs_4_6readableeny'
+file_pathnoibsys = 'single_bunch_noibs_4_6readables'
+file_pathnoibsyeny = 'single_bunch_noibs_4_6readableeny'
+file_pathibsy_rate='runAll_4_6s'
+file_pathibsdIBSRatey ='runAll_4_6dIBSRatey'
+file_pathibsdIBSRatex ='runAll_4_6dIBSRatex'
 
 try:
-    data1 = np.loadtxt(file_path1)
-    data2 = np.loadtxt(file_path2)
-    data3 = np.loadtxt(file_path3)
-    data4 = np.loadtxt(file_path4)
+    dataibsys = np.loadtxt(file_pathibsys)
+    dataibsyeny = np.loadtxt(file_pathibsyeny)
+    datanoibsys = np.loadtxt(file_pathnoibsys)
+    datanoibsyeny = np.loadtxt(file_pathnoibsyeny)
+    dataibsys_rate = np.loadtxt(file_pathibsy_rate)
+    dataibsydIBSRatey = np.loadtxt(file_pathibsdIBSRatey)
+    dataibsydIBSRatex = np.loadtxt(file_pathibsdIBSRatex)
     #file = open(file_path, 'r')
 
 except FileNotFoundError:
-    print(f"Error: File not found at {file_path1}")
+    print(f"Error: File not found at {file_pathibsys}")
     exit()
 
-#content = file.read()
-#file.close()
-#print(content)
-print(data1)
-
-plt.plot(data1, data2, label='With IBS', color='blue')
-plt.plot(data3, data4,label='Without IBS',color='red')
+plt.plot(dataibsys, dataibsyeny, label='With IBS', color='blue')
+plt.plot(datanoibsys, datanoibsyeny,label='Without IBS',color='red')
 plt.xlabel('s [m]')
 plt.ylabel(r'$\epsilon_{n,y} [m]$')
 plt.legend()
 plt.show()
 
+plt.plot(dataibsys_rate, dataibsydIBSRatey,label='y')
+plt.plot(dataibsys_rate, dataibsydIBSRatex,label='x')
+plt.xlabel('s [m]')
+plt.ylabel('dIBSRate [1/(m s)]')
+plt.legend()
+plt.show()
