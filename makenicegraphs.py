@@ -38,4 +38,6 @@ except FileNotFoundError:
 print(data1)
 
 plt.plot(data1, data2)
+plt.xlabel('s [m]')
+plt.ylabel(r'$\epsilon_{n,y} [m]$')
 plt.show()
