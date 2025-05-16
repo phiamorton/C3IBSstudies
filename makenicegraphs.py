@@ -4,28 +4,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 file_path1 = 'single_bunch_ibs_4_6readables'
-file_path2 = 'single_bunch_ibs_4_6readableenx'
-
-# Read all lines except the first
-with open(file_path1, 'r') as f:
-    lines = f.readlines()
-
-# Write back all lines except the first one
-with open(file_path1, 'w') as f:
-    f.writelines(lines[1:])
-
-
-# Read all lines except the first
-with open(file_path2, 'r') as f:
-    lines = f.readlines()
-
-# Write back all lines except the first one
-with open(file_path2, 'w') as f:
-    f.writelines(lines[1:])
+file_path2 = 'single_bunch_ibs_4_6readableeny'
+file_path3 = 'single_bunch_noibs_4_6readables'
+file_path4 = 'single_bunch_noibs_4_6readableeny'
 
 try:
     data1 = np.loadtxt(file_path1)
     data2 = np.loadtxt(file_path2)
+    data3 = np.loadtxt(file_path3)
+    data4 = np.loadtxt(file_path4)
     #file = open(file_path, 'r')
 
 except FileNotFoundError:
@@ -37,7 +24,10 @@ except FileNotFoundError:
 #print(content)
 print(data1)
 
-plt.plot(data1, data2)
+plt.plot(data1, data2, label='With IBS', color='blue')
+plt.plot(data3, data4,label='Without IBS',color='red')
 plt.xlabel('s [m]')
 plt.ylabel(r'$\epsilon_{n,y} [m]$')
+plt.legend()
 plt.show()
+
