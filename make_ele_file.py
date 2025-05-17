@@ -49,7 +49,7 @@ with open(filename, 'w') as myfile:
                 "\n\tn_particles_per_bunch = 100000,"
                 "\n\tone_random_bunch=0,"
                 "\n\temit_nx = 7.75e-7,"
-                "\n\temit_ny = 1e-8,"
+                "\n\temit_ny = 1e-9,"
                 "\n\tsigma_dp = 0.015,"
                 "\n\tsigma_s = 1.0e-04,"
                 "\n\tenforce_rms_values[0] = 7,7,7,"

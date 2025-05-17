@@ -1,5 +1,5 @@
-energyinGeV=10
-filepathenergy="10" #no decimals, replace with _ 
+energyinGeV=4.6
+filepathenergy="4_6" #no decimals, replace with _ 
 #echo MYBL_noibs_${filepathenergy}
 /usr/bin/python3 make_lat_noibs.py --lat_name=MYBL_noibs_${filepathenergy} --energy_GeV=${energyinGeV} --filepathenergy=${filepathenergy}
 touch single_bunch_noibs_${filepathenergy}.ele

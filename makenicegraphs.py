@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 E_init=10
-#E_init=4.6
+E_init=4.6
 
 if E_init==4.6:
     file_pathibsys = 'single_bunch_ibs_4_6readables'
@@ -56,7 +56,6 @@ try:
     dataibsydIBSRatey550 = np.loadtxt(file_pathibsdIBSRatey550)
     dataibsydIBSRatex550 = np.loadtxt(file_pathibsdIBSRatex550)
     #file = open(file_path, 'r')
-
 except FileNotFoundError:
     print(f"Error: File not found at {file_pathibsys}")
     exit()
@@ -68,9 +67,9 @@ plt.xlabel('s [m]')
 plt.ylabel(r'$\epsilon_{n,y} [m]$')
 plt.legend()
 if E_init==4.6:
-    plt.title('250 GeV CoM starting at 4.6 GeV case')
+    plt.title('250 GeV CoM starting at 4.6 GeV, 1nm case')
 if E_init==10:
-    plt.title('250 GeV CoM starting at 10 GeV case')
+    plt.title('250 GeV CoM starting at 10 GeV, 1nm case')
 plt.show()
 
 #550emit
@@ -79,9 +78,9 @@ plt.plot(datanoibsys550, datanoibsyeny550,label='Without IBS',color='red')
 plt.xlabel('s [m]')
 plt.ylabel(r'$\epsilon_{n,y} [m]$')
 if E_init==4.6:
-    plt.title('550 GeV CoM starting at 4.6 GeV case')
+    plt.title('550 GeV CoM starting at 4.6 GeV, 1nm case')
 if E_init==10:
-    plt.title('550 GeV CoM starting at 10 GeV case')
+    plt.title('550 GeV CoM starting at 10 GeV, 1nm case')
 plt.legend()
 plt.show()
 
@@ -92,9 +91,9 @@ plt.xlabel('s [m]')
 plt.ylabel('dIBSRate [1/(m s)]')
 plt.legend()
 if E_init==4.6:
-    plt.title('250 GeV CoM starting at 4.6 GeV case')
+    plt.title('250 GeV CoM starting at 4.6 GeV, 1nm case')
 if E_init==10:
-    plt.title('250 GeV CoM starting at 10 GeV case')
+    plt.title('250 GeV CoM starting at 10 GeV, 1nm case')
 plt.show()
 
 #550 rate
@@ -104,7 +103,7 @@ plt.xlabel('s [m]')
 plt.ylabel('dIBSRate [1/(m s)]')
 plt.legend()
 if E_init==4.6:
-    plt.title('550 GeV CoM starting at 4.6 GeV case')
+    plt.title('550 GeV CoM starting at 4.6 GeV, 1nm case')
 if E_init==10:
-    plt.title('550 GeV CoM starting at 10 GeV case')
+    plt.title('550 GeV CoM starting at 10 GeV, 1nm case')
 plt.show()
