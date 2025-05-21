@@ -9,3 +9,4 @@ sddscombine IBSOUTPUT_${filepathenergy}* -merge -pipe=out | sddssort -pipe=in -c
 rm IBSOUTPUT_${filepathenergy}*
 sddsplot -col=s,dIBSRatey -col=s,dIBSRatex runAll_${filepathenergy}.ibs -graph=line,vary -legend
 sddsprintout -param=xGrowthRate -param=yGrowthRate -param=zGrowthRate runAll_${filepathenergy}.ibs 
+#sddsprintout -param=eny single_bunch_noibs_4_6.fin
